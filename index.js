@@ -23,11 +23,11 @@ const reviewsRoutes = require('./routes/reviews');
 
 const MongoStore = require("connect-mongo")(session);
 
-const dbUrl = process.env.DB_URL;
-// 'mongodb://127.0.0.1:27017/castles' 
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/castles';
+
 
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb+srv://Adrian_Daraban:Jq7xIC3xRo6kGpky@cluster1.2pentmq.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect(dbUrl);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", () => {
